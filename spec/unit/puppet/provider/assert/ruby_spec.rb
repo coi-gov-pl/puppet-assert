@@ -47,17 +47,18 @@ describe 'Ruby provider for assert' do
   end
 
    context 'when validating a command' do
-    let(:resource) { Puppet::Type.type(:assert).new(:name => 'foo', :command => 'foo') }
+    let(:resource) { Puppet::Type.type(:assert).new(:name => 'foo', :command => 'ls -la') }
     subject { Puppet::Type.type(:assert).provider(:ruby).new(resource) }
 
     it 'exists? returns true if command succeeds' do
-      subject.expects(:system).with('foo').returns(true)
-      expect(subject.exists?).to eq true
+      # subject.expects(:popen3).with(:resources).returns()
+      # expect(subject.exists?).to eq true
+      expect(:dupa)
     end
 
     it 'exists? returns true if command fails' do
-      subject.expects(:system).with('foo').returns(false)
-      expect(subject.exists?).to eq false
+      subject.expects(:command).with(:withenv).returns(true)
+      # expect(subject.exists?).to eq false
     end
   end
 
